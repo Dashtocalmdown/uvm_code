@@ -24,3 +24,10 @@ uvm/src/               UVM的源文件
         seq/           与sequence相关的代码
         tlm1, tlm2/    TLM层级文件
         uvm_pkg.sv     包含UVM所需的文件
+        uvm_macros.svh 宏包含文件
+
+## UVM package包含的三个主要的类
+
+1. uvm_component是用来构建UVM testbench层次结构最基本的类
+2. uvm_object是UVM的一种数据结构，可作为配置对象来配置测试平台
+3. uvm_transaction是用来产生激励和收集响应
