@@ -75,3 +75,55 @@ UVM phase的objection属性有两个作用：
 
 1. 控制task phase的运行与终止
 2. 同步各个conponent同名的task phase
+
+## UVM factory机制
+
+可以使用户在不更改代码的情况下时下实现不同对象的更换
+
+factory机制的运作步骤：
+
+1. 将用户自定义的类向factory的注册表进行注册
+2. 要使用“class_name::type_id::create()”来代替new来实例化对象
+3. 根据具体要求向替换表添加替换条目
+4. 在运行仿真时，UVM会根据这两张表自动的实现factory机制
+
+## UVM信息服务机制
+
+UVM会提供更为完善的信息打印机制：
+
+./src/uvm_info.jpg
+
+信息安全等级：
+
+1. UVM_FATAL：仿真时不能容忍的错误，安全等级最严重，`uvm_fatal("ID", "Message")
+2. UVM_ERROR：仿真时出现错误，不是平台本身的错误，`uvm_error("ID", "Message")
+3. UVM_WARNING：仿真时给出的警告信息，可能会影响仿真，`uvm_warning("ID", "Message")
+4. UVM_INFO：仿真时一般报告信息，安全等级最低，`uvm_info("ID", "Message", verbosity)
+
+其中uvm_fatal, uvm_error, uvm_warning的打印信息总是会显示出来，
+uvm_info的打印信息会根据其等级的不同而显示或不显示。
+verbosity分为五种：UVM_LOW，UVM_MEDIUM，UVM_HIGH，UVM_FULL，UVM_DEBUG，默认为UVM_MEDIUM，高于其的三个等级信息都不会打印。
+
+## UVM configuration机制
+
+是一种属性配置工具，可以传递值，传递对象，传递interface。
+
+特点：
+
+1. 半个全局变量，避免全局变量带来的风险
+2. 高层次组件可以通过configuration机制实现不改变代码的情况下，更改它所包含子组件的变量
+3. 在各个层次上都可以使用此机制
+4. 支持通配符和正则表达式对多个变量进行配置
+5. 支持用户自定义的数据类型
+6. 可以在仿真运行的过程中进行配置
+
+使用原理：
+
+1. 设置配置资源
+2. 获取配置资源
+
+./src/uvm_configration.jpg
+
+如何使用：
+./src/uvm_configration_set.jpg
+./src/uvm_configration_get.jpg

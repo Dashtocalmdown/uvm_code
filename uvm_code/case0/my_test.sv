@@ -16,7 +16,7 @@ class my_test extends uvm_test;
             this, "*.m_seqr.run_phase", 
             "default_sequence", my_sequence::get_type()
         );
-
+        uvm_config_db#(int)::set(this, "*.m_seqr", "item_num", 20);
     endfunction
 
 endclass
