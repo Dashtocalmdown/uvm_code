@@ -18,6 +18,12 @@ class my_sequence extends uvm_sequence #(my_transaction);
         //产生item_num个事务对象transaction
         repeat(item_num) begin
             `uvm_do(req)
+            //实现uvm_do宏的等效方法
+            // my transaction tr;
+            // tr = my transaction::type_id::create("tr");
+            // start_item(tr);
+            // tr.pre_randomize();
+            // finish_item(tr);  
         end
         #100;
         if(starting_phase != null)
